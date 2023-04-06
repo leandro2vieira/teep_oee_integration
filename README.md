@@ -8,7 +8,7 @@ Webservice, Tabela, View, CSV. A Vedois Produção recomenda o uso de webservice
 A integração deve ser separada em duas etapas.
 
 - 1 - Importação ( Vedois Produção <-- ERP )
-- 2 - Exportação ( Vedois Produção --> ERP )
+- 2 - Exportação ( Vedois Produção --> ERP ) em breve.
 
 Abaixo segue os layouts necessários, basta expandir.
 Além de ser possível baixar os scripts prontos com os creates tanto de import quanto export.
