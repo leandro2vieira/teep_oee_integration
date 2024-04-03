@@ -30,7 +30,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | **company** | Integer |  | default=1 | Código da Empresa |
 | **code** |	Varchar | max_length=30 |  | Código da máquina |
 | description | Varchar | max_length=128 |  | Descrição da máquina |
-| resource_group | Varchar | max_length=32 |  | Codigo do grupo de máquinas, associando com a ImportResourceGroup |	
+| resource_group_code | Varchar | max_length=32 |  | Codigo do grupo de máquinas, associando com a ImportResourceGroup |	
 | active |	BooleanField |		|default=False|Define se a máquina está ativa/inativa|
 | status_imp | Varchar | max_length=1 | 'N'=new, 'U'=update, 'I'=integrated | Define status da linha, caso for importação por tabela. |
 
@@ -67,6 +67,8 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | password        |Varchar	|max_length=32   |blank=True                         |Se não tiver senha, manter vazio. Se usar algum valor, ele será solicitado para confirmar a parada. Muito usado para mecânicos/eletricistas, onde apenas estes profissionais podem inserir determinadas paradas.|
 | color	        |RGBColorField	|		 |blank=True,<br> null=True              |Exemplo: ‘#ffffff’ = branco|
 | **active**	|BooleanField	|		 |default=True                       |Define ativo/inativo|
+| setup	|BooleanField	|		 |default=False                       |Define se o motivo é setup|
+| scheduled	|BooleanField	|		 |default=False                       |Define se o motivo é programado|
 | status_imp	|Varchar	|max_length=1    |'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
 
 <summary>Nome da Tabela = IMPORTWASTEREASON</summary>
@@ -98,9 +100,9 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 
 |Coluna                   |Tipo de dado |Tamanho           		|Obs		                    |Descrição    |
 |-------------------------|-------------|-------------------------------|-----------------------------------|-------------|
-|tool_code|DecimalField	|max_digits=20,<br>decimal_places=10| |Codigo da ferramenta usado na tabela IMPORTTOOL|
-|resource_code|DecimalField|max_digits=20,<br>decimal_places=10| |Codigo do recurso usado na tabela IMPORTRESOURCE.|
-|product_code|DecimalField	|max_digits=20,<br>decimal_places=10| |Codigo do produto usado na tabela IMPORTPRODUCT.|
+|**tool_code**|Varchar|max_digits=30| |Codigo da ferramenta usado na tabela IMPORTTOOL|
+|**resource_code**|Varchar|max_digits=30| |Codigo do recurso usado na tabela IMPORTRESOURCE.|
+|product_code|Varchar|max_digits=30| |Codigo do produto usado na tabela IMPORTPRODUCT.|
 |multiplication_coefficient|DecimalField|max_digits=20,<br>decimal_places=10| |Número de peças incrementadas à cada ciclo de máquina. Por exemplo número de cavidades quando for injetora.|
 |depreciation|DecimalField |max_digits=20,<br>decimal_places=10| |O valor padrão é 0. Quando se tem um molde que uma cavidade está danificada, deve-se enviar a quantidade danificada nesta coluna.|
 |**cycle_time**|Integer| |Valor em milisegundos|Define tempo padrão da ferramenta, ou seja, ciclo padrão ex: 10.000. O valor é salvo em milisegundos na base do Vedois, contudo caso for outra unidade de tempo, o mesmo deve ser informado para efetuar a conversão correta.|
@@ -117,7 +119,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |**code**|Varchar|max_length=30||Código do produto|
 |version|Varchar|max_length=30||Versão do produto|
 |description|Varchar|max_length=128||Descrição do produto|
-|expected_time|Varchar|max_length=128||Tempo esperado do produto|
+|expected_time|Integer||default = 0|Tempo esperado do produto|
 |box_conversion|Varchar|max_length=128||Conversão de caixa do produto|
 |external_id|Varchar|max_length=128||ID externo do produto|
 |status_imp|Varchar|max_length=1|'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
@@ -131,7 +133,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |**origin**|Varchar|max_length=30|default='0'|Código da origem|
 |**code**|Varchar|max_length=30||Código da ordem|
 |description|Varchar|max_length=128|blank=True,<br> null=True| Descrição da ordem|
-|**product**|Varchar|max_length=30|blank=True,<br> null=True| Código do produto|
+|**product_code**|Varchar|max_length=30|blank=True,<br> null=True| Código do produto|
 |derivation|Varchar|max_length=30|blank=True,<br> null=True| Derivação do produto|
 |order|Integer||default=1,<br>blank=True,<br> null=True| Número do pedido|
 |measurement_unit |Varchar|max_length=128| default="PC",<br>blank=True,<br>null=True| Unidade de medida, ex: pc, metros|
@@ -151,11 +153,11 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 | -------------------- | ------------- | ----------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------- |
 |**company**| Integer|| default=1| Código da empresa|
 |**origin**| Varchar| max_length=30| default='0'| Código da origem|
-|**code**| Varchar| max_length=30|| Código da Ordem Produção|
+|**production_order_code**| Varchar| max_length=30|| Código da Ordem Produção|
 |**sequence**| Integer||| Sequência do Roteiro|
 |**stage**| Integer||| Codigo do estagio|
-|resource| Varchar| max_length=30| blank=True,<br> null=True| Codigo do resource usado em IMPORTRESOURCE|
-|tool| Varchar| max_length=30| blank=True,<br> null=True| Codigo da ferramenta usado em IMPORTTOOL|
+|resource_code| Varchar| max_length=30| blank=True,<br> null=True| Codigo do resource usado em IMPORTRESOURCE|
+|tool_code| Varchar| max_length=30| blank=True,<br> null=True| Codigo da ferramenta usado em IMPORTTOOL|
 |operation_code| Varchar| max_length=30| blank=True,<br> null=True| Código da operacao|
 |operation_description| Varchar| max_length=30| blank=True,<br> null=True| Descrição da operacao|
 |quantity| DecimalField  | max_digits=20,<br>decimal_places=10 || Quantidade prevista|
@@ -183,4 +185,99 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |**production_sequence**| Integer||| Sequência do agrupamento|
 |fraction| Integer||| Fração do agrupamento|
 |status_imp| Varchar| max_length=1| 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
+</details>
+
+
+
+## 2 - Exportação
+
+<details>
+ <summary>Ver Tabelas</summary>
+ 
+ **Sistema: Vedois-OEE** <br>
+ **Atualizado em: 03/04/2024**<br>
+
+
+<summary>Nome da Tabela = EXPORTPRODUCTION </summary><br>
+<h4>Tabela responsável por gravar os eventos de produção</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| id | IntegerField |  | primary_key=True | id criado sequencial|
+| generation_date | DateTimeField |  | blank=True, null=True | Data/hora do envio do evento.|
+| company | IntegerField |  | blank=True, null=True ||
+| origin | Varchar | max_length=30 | blank=True, null=True ||
+| production_order | Varchar | max_length=30 | blank=True, null=True ||
+| stage | IntegerField |  | blank=True, null=True ||
+| production_sequence | IntegerField |  | blank=True, null=True ||
+| product | Varchar | max_length=30 | blank=True, null=True ||
+| resource | Varchar | max_length=30 | blank=True, null=True ||
+| resource_group | Varchar | max_length=30 | blank=True, null=True ||
+| tool | Varchar | max_length=30 | blank=True, null=True ||
+| operator | Varchar | max_length=30 | blank=True, null=True ||
+| shift | Varchar | max_length=30 | blank=True, null=True ||
+| control | Varchar | max_length=30 | blank=True, null=True ||
+| start | DateTimeField |  | blank=True, null=True | inicio do evento|
+| end |  | DateTimeField | blank=True, null=True | fim do evento|
+| duration | IntegerField |  |  | duracao do evento fim - inicio|
+| batch_code | Varchar | max_length=32 | default="", blank=True, null=True | Codigo do lote, em caso onde o cliente tenha essa informação o campo é alimentado|
+| quantity | DecimalField | max_digits=20, decimal_places=10 | default=0 ||
+| quantity2 | DecimalField | max_digits=20, decimal_places=10 | default=0 ||
+| quantity3 | DecimalField | max_digits=20, decimal_places=10 | default=0 ||
+| conversion_rate | DecimalField | max_digits=20, decimal_places=10 | default=1 ||
+
+<summary>Nome da Tabela = EXPORTWASTE </summary><br>
+<h4>Tabela responsável por gravar os eventos de refugo</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| id | IntegerField |  | primary_key=True | id criado sequencial|
+| generation_date | DateTimeField |  | blank=True, null=True | Data/hora do envio do evento.|
+| company | IntegerField |  | blank=True, null=True ||
+| origin | Varchar | max_length=30 | blank=True, null=True ||
+| production_order | Varchar | max_length=30 | blank=True, null=True ||
+| stage | IntegerField |  | blank=True, null=True ||
+| production_sequence | IntegerField |  | blank=True, null=True ||
+| product | Varchar | max_length=30 | blank=True, null=True ||
+| resource | Varchar | max_length=30 | blank=True, null=True ||
+| resource_group | Varchar | max_length=30 | blank=True, null=True ||
+| tool | Varchar | max_length=30 | blank=True, null=True ||
+| operator | Varchar | max_length=30 | blank=True, null=True ||
+| shift | Varchar | max_length=30 | blank=True, null=True ||
+| time | DateTimeField |  | blank=True, null=True | Horario do apontamento de refugo.|
+| reason | Varchar | max_length=30 | blank=True, null=True ||
+| batch_code | Varchar | max_length=32 | default="", blank=True | Codigo do lote, Caso o cliente tenha essa informação o campo é alimentado|
+| quantity | DecimalField | max_digits=20, decimal_places=10 |  ||
+| quantity2 | DecimalField | max_digits=20, decimal_places=10 | default=0 ||
+| quantity3 | DecimalField | max_digits=20, decimal_places=10 | default=0 ||
+| conversion_rate | DecimalField | max_digits=20, decimal_places=10 | default=1 ||
+| classification | Varchar | max_length=30 | blank=True, null=True ||
+| cause_step | Varchar | max_length=30 | blank=True, null=True ||
+| cause_resource | Varchar | max_length=30 | blank=True, null=True ||
+
+
+<summary>Nome da Tabela = EXPORTSTOP</summary><br>
+<h4>Tabela responsável por gravar os eventos de parada</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| id | IntegerField |  | primary_key=True | id criado sequencial|
+| generation_date | DateTimeField |  | blank=True, null=True | Data/hora do envio do evento.|
+| company | IntegerField |  | blank=True, null=True ||
+| origin | Varchar | max_length=30 | blank=True, null=True ||
+| production_order | Varchar | max_length=30 | blank=True, null=True ||
+| stage | IntegerField |  | blank=True, null=True ||
+| production_sequence | IntegerField |  | blank=True, null=True ||
+| product | Varchar | max_length=30 | blank=True, null=True ||
+| resource | Varchar | max_length=30 | blank=True, null=True ||
+| resource_group | Varchar | max_length=30 | blank=True, null=True ||
+| tool | Varchar | max_length=30 | blank=True, null=True ||
+| operator | Varchar | max_length=30 | blank=True, null=True ||
+| shift | Varchar | max_length=30 | blank=True, null=True ||
+| start | DateTimeField |  | blank=True, null=True | inicio do evento|
+| end |  | DateTimeField | blank=True, null=True | fim do evento|
+| duration | IntegerField |  |  | duracao do evento fim - inicio|
+| reason | Varchar | max_length=30 | blank=True, null=True ||
+| setup | BooleanField | BooleanField | default=False ||
+
 </details>
