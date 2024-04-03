@@ -1,0 +1,135 @@
+CREATE TABLE IMPORTRESOURCEGROUP (
+  id        SERIAL       NOT NULL,
+  code      VARCHAR(32)  NOT NULL,
+  description VARCHAR(128) NOT NULL,
+  status_imp VARCHAR(1) not null
+);
+
+
+CREATE TABLE IMPORTRESOURCE (
+  id                  SERIAL          NOT NULL,
+  company             INTEGER         NOT NULL,
+  code              VARCHAR(30)     NOT NULL,
+  description           VARCHAR(128)    NOT NULL,
+  resource_group_code             VARCHAR(32),
+  active               BOOLEAN         NOT NULL DEFAULT TRUE,
+  status_imp          VARCHAR(32)     NOT NULL
+);
+
+ 
+CREATE TABLE IMPORTOPERATOR (
+  id      SERIAL       NOT NULL,
+  company INTEGER      NOT NULL,
+  code  VARCHAR(30)  NOT NULL,
+  name    VARCHAR(128) NOT NULL,
+  active   BOOLEAN      NOT NULL DEFAULT TRUE,
+  status_imp VARCHAR(1) NOT NULL
+);
+
+
+CREATE TABLE IMPORTSTOPREASON (
+  id        SERIAL       NOT NULL,
+  company   INTEGER      NOT NULL,
+  code    VARCHAR(30)  NOT NULL,
+  description VARCHAR(128) NOT NULL,
+  abbreviation VARCHAR(32) DEFAULT '',
+  password VARCHAR(32) DEFAULT '',
+  color VARCHAR(7),
+  active   BOOLEAN      NOT NULL DEFAULT TRUE,
+  setup          BOOLEAN      NOT NULL DEFAULT FALSE,
+  scheduled          BOOLEAN      NOT NULL DEFAULT FALSE,
+  status_imp VARCHAR(1) not null
+);
+
+
+CREATE TABLE IMPORTWASTEREASON (
+  id             SERIAL       NOT NULL,
+  company        INTEGER      NOT NULL,
+  code         VARCHAR(30)  NOT NULL,
+  description      VARCHAR(128) NOT NULL,
+  status_imp     VARCHAR(1)   NOT NULL
+);
+
+
+CREATE TABLE IMPORTTOOL (
+  id                        SERIAL          NOT NULL,
+  company                   INTEGER         NOT NULL,
+  code                    VARCHAR(30)     NOT NULL,
+  description                 VARCHAR(128),
+  status_imp                VARCHAR(1)      NOT NULL
+);
+
+
+CREATE TABLE IMPORTTOOLSETTINGS (
+  id            SERIAL          NOT NULL,
+  company                   INTEGER         NOT NULL,
+  tool_code     VARCHAR(30) NOT NULL,
+  resource_code                   VARCHAR(30),
+  product_code                   VARCHAR(30),
+  multiplication_coefficient                 NUMERIC(20, 10) NOT NULL DEFAULT 1,
+  depreciation           NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  cycle_time                 BIGINT          NOT NULL,
+  cycle_limit                BIGINT          NOT NULL,
+  stop_limit                 BIGINT          NOT NULL DEFAULT 0,
+  status_imp                VARCHAR(1) NOT NULL
+);
+
+  
+CREATE TABLE IMPORTPRODUCT (
+  id        SERIAL       NOT NULL,
+  company   INTEGER      NOT NULL,
+  code    VARCHAR(30)  NOT NULL,
+  version VARCHAR(30) DEFAULT '',
+  description    VARCHAR(128),
+  expected_time    BIGINT          NOT NULL DEFAULT 0,
+  box_conversion    VARCHAR(30),
+  external_id    VARCHAR(30),
+  status_imp VARCHAR(1) NOT NULL
+);
+
+
+CREATE TABLE IMPORTPRODUCTIONORDER (
+  id               SERIAL          NOT NULL,
+  company          INTEGER         NOT NULL,
+  origin           VARCHAR(30)     NOT NULL DEFAULT 0,
+  code           VARCHAR(30)     NOT NULL,
+  description        VARCHAR(1000) DEFAULT '',
+  product_code          VARCHAR(30) not null,
+  derivation        VARCHAR(30) DEFAULT '',
+  "order"           INTEGER DEFAULT 1,
+  measurement_unit   VARCHAR(128) DEFAULT 'PC',
+  customer_name     VARCHAR(128) DEFAULT '',
+  quantity       NUMERIC(20, 10) NOT NULL DEFAULT 1,
+  grouped_production_order        VARCHAR(30),
+  fraction    NUMERIC(10, 9)  NOT NULL DEFAULT 1,
+  deadline      TIMESTAMP WITH TIME ZONE,
+  priority       NUMERIC(20, 10) NOT NULL DEFAULT 1,
+  status_imp       VARCHAR(1) NOT NULL
+);
+
+
+
+CREATE TABLE IMPORTPRODUCTIONSEQUENCE (
+  id                   SERIAL          NOT NULL,
+  company              INTEGER         NOT NULL,
+  production_order_code               VARCHAR(30) NOT NULL,
+  sequence            INTEGER         NOT NULL DEFAULT 0,
+  origin           VARCHAR(30)     NOT NULL DEFAULT 0,
+  stage              INTEGER         NOT NULL DEFAULT 0,
+  resource_code              VARCHAR(30),
+  tool_code           varchar(30),
+  operation_code      VARCHAR(30),
+  operation_description      VARCHAR(128),
+  quantity           NUMERIC(20, 10) NOT NULL,
+  quantity2           NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  tare           NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  conversion_rate    NUMERIC(20, 10) NOT NULL DEFAULT 1,
+  measurement_unit       VARCHAR(5) NOT NULL DEFAULT 'PC',
+  expected_start_date TIMESTAMP WITH TIME ZONE,
+  expected_end_date    TIMESTAMP WITH TIME ZONE,
+  expected_setup       BIGINT          NOT NULL,
+  expected_time       BIGINT          NOT NULL,
+  external_code       VARCHAR(128),
+  situation       VARCHAR(1) NOT NULL DEFAULT 'L',
+  status_imp           VARCHAR(1) NOT NULL
+);

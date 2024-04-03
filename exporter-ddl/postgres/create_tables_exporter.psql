@@ -1,0 +1,99 @@
+CREATE SEQUENCE EXPORTPRODUCTION_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE TABLE EXPORTPRODUCTION (
+  id INTEGER, 
+  generation_date TIMESTAMP,
+  company INTEGER,
+  origin VARCHAR(30),
+  production_order VARCHAR(30),
+  stage  INTEGER,
+  production_sequence INTEGER,
+  product VARCHAR(30),
+  resource VARCHAR(30),
+  resource_group VARCHAR(30),
+  tool varchar(30),
+  operator VARCHAR(30),
+  shift VARCHAR(30),
+  control VARCHAR(30),
+  start TIMESTAMP,
+  "end" TIMESTAMP,
+  duration INTEGER,
+  batch_code VARCHAR(32) default '',
+  quantity DECIMAL(20, 10),
+  quantity2 DECIMAL(20, 10) default 0,
+  quantity3 DECIMAL(20, 10) default 0,
+  conversion_rate DECIMAL(20,10) DEFAULT 1,
+  CONSTRAINT EXPORTPRODUCTION_pkey PRIMARY KEY(id)
+);
+
+
+CREATE SEQUENCE EXPORTWASTE_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE TABLE EXPORTWASTE (
+  id INTEGER, 
+  generation_date TIMESTAMP,
+  company INTEGER,
+  origin VARCHAR(30),
+  production_order VARCHAR(30),
+  stage  INTEGER,
+  production_sequence INTEGER,
+  product VARCHAR(30),
+  resource VARCHAR(30),
+  resource_group VARCHAR(30),
+  tool varchar(30),
+  operator VARCHAR(30),
+  shift VARCHAR(30),
+  control VARCHAR(30),
+  time TIMESTAMP,
+  reason VARCHAR(30),
+  batch_code VARCHAR(32) default '',
+  quantity DECIMAL(20, 10),
+  quantity2 DECIMAL(20, 10) default 0,
+  quantity3 DECIMAL(20, 10) default 0,
+  conversion_rate DECIMAL(20,10) DEFAULT 1,
+  classification VARCHAR(30),
+  cause_step VARCHAR(30),
+  cause_resource VARCHAR(30),
+  CONSTRAINT EXPORTWASTE_pkey PRIMARY KEY(id)
+);
+
+
+CREATE SEQUENCE EXPORTSTOP_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE TABLE EXPORTSTOP (
+  id INTEGER, 
+  generation_date TIMESTAMP,
+  company INTEGER,
+  origin VARCHAR(30),
+  production_order VARCHAR(30),
+  stage  INTEGER,
+  production_sequence INTEGER,
+  product VARCHAR(30),
+  resource VARCHAR(30),
+  resource_group VARCHAR(30),
+  tool varchar(30),
+  operator VARCHAR(30),
+  shift VARCHAR(30),
+  control VARCHAR(30),
+  start TIMESTAMP,
+  "end" TIMESTAMP,
+  duration INTEGER,
+  reason VARCHAR(30),
+  setup BOOLEAN DEFAULT FALSE,
+  CONSTRAINT EXPORTSTOP_pkey PRIMARY KEY(id)
+);
