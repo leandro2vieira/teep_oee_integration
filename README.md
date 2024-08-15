@@ -1,14 +1,14 @@
-![Vedois Produção Tecnologia](http://vedois.com.br/site/wp-content/uploads/2018/04/logovedoispreto3.png)
+![Teep Tecnologia](https://teep.com.br/wp-content/uploads/2023/11/cropped-cropped-teep-logo-menor-113x33.png)
 
 ## Introdução sobre Integração
 
-A integração com o sistema da Vedois Produção pode ser feito com N tecnologias, por exemplo:
-Webservice, Tabela, View, CSV. A Vedois Produção recomenda o uso de webservice ou tabela, pois possuem melhor performance/segurança.
+A integração com o sistema teepOEE pode ser feito com N tecnologias, por exemplo:
+Webservice, Tabela, View, CSV. A Teep recomenda o uso de webservice ou tabela, pois possuem melhor performance/segurança.
 
 A integração deve ser separada em duas etapas.
 
-- 1 - Importação ( Vedois Produção <-- ERP )
-- 2 - Exportação ( Vedois Produção --> ERP ) em breve.
+- 1 - Importação ( TEEP <-- ERP )
+- 2 - Exportação ( TEEP --> ERP ) em breve.
 
 Abaixo segue os layouts necessários, basta expandir.
 Além de ser possível baixar os scripts prontos com os creates tanto de import quanto export.
@@ -18,7 +18,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 <details>
 <summary>Ver Tabelas</summary>
 
-**Sistema: Vedois-Produção** <br>
+**Sistema: teepOEE** <br>
 **Atualizado em: 28/03/2024** <br>
 **OS CAMPOS EM NEGRITO SÃO OBRIGATÓRIOS.**
 
@@ -105,7 +105,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |product_code|Varchar|max_digits=30| |Codigo do produto usado na tabela IMPORTPRODUCT.|
 |multiplication_coefficient|DecimalField|max_digits=20,<br>decimal_places=10| |Número de peças incrementadas à cada ciclo de máquina. Por exemplo número de cavidades quando for injetora.|
 |depreciation|DecimalField |max_digits=20,<br>decimal_places=10| |O valor padrão é 0. Quando se tem um molde que uma cavidade está danificada, deve-se enviar a quantidade danificada nesta coluna.|
-|**cycle_time**|Integer| |Valor em milisegundos|Define tempo padrão da ferramenta, ou seja, ciclo padrão ex: 10.000. O valor é salvo em milisegundos na base do Vedois, contudo caso for outra unidade de tempo, o mesmo deve ser informado para efetuar a conversão correta.|
+|**cycle_time**|Integer| |Valor em milisegundos|Define tempo padrão da ferramenta, ou seja, ciclo padrão ex: 10.000. O valor é salvo em milisegundos na base da Teep, contudo caso for outra unidade de tempo, o mesmo deve ser informado para efetuar a conversão correta.|
 |cycle_limit		  |Integer	||Valor em milisegundos|Este limite da uma “tolerância” ao tempo normal de ciclo, como no exemplo acima usei o valor 10.000. Se eu quiser dar 30 segundos de tolerância, utilizo o valor 40.000.|
 |stop_limit		  |Integer	||Valor em milisegundos|Este campo substitui o tempo_ciclo quando usado um modo exclusivo para usinagem, geralmente Tornos CNC.|
 |status_imp		  |Varchar	|max_length=1			|'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
@@ -166,8 +166,8 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |measurement_unit| Varchar| max_digits=128,<br>default="PC"| blank=True, null=True| Unidade de medida da sequencia, Exemplo: PC(peça), M² (metro quadrado) |
 |expected_start_date | DateTimeField || blank=True,<br> null=True| Data prevista de inicio|
 |expected_end_date| DateTimeField || blank=True,<br> null=True| Data prevista de termino|
-|**expected_setup**| BigInteger|| default=0| Tempo de setup em milisegundos, caso não tiver mandar 1. O valor é salvo em milisegundos na base do Vedois, contudo caso for outra unidade de tempo, o mesmo deve ser informado para efetuar a conversão correta.|
-|**expected_time**| BigInteger|| default=0| Tempo de produção em milisegundos, caso nao tiver mandar 1. O valor é salvo em milisegundos na base do Vedois, contudo caso for outra unidade de tempo, o mesmo deve ser informado para efetuar a conversão correta.|
+|**expected_setup**| BigInteger|| default=0| Tempo de setup em milisegundos, caso não tiver mandar 1. O valor é salvo em milisegundos na base da Teep, contudo caso for outra unidade de tempo, o mesmo deve ser informado para efetuar a conversão correta.|
+|**expected_time**| BigInteger|| default=0| Tempo de produção em milisegundos, caso nao tiver mandar 1. O valor é salvo em milisegundos na base da Teep, contudo caso for outra unidade de tempo, o mesmo deve ser informado para efetuar a conversão correta.|
 |external_id|Varchar|max_length=128||Armazenamos o id do ERP, caso o mesmo deseja que informamos o id na devolução do dado.|
 |situation|Varchar|max_length=128||Situacao da sequencia de produção, L = liberado, F = finalizado|
 |status_imp| Varchar| max_length=1| 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
@@ -194,7 +194,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 <details>
  <summary>Ver Tabelas</summary>
  
- **Sistema: Vedois-OEE** <br>
+ **Sistema: teepOEE** <br>
  **Atualizado em: 03/04/2024**<br>
 
 
