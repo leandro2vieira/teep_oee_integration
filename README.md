@@ -35,7 +35,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | status_imp | Varchar | max_length=1 | 'N'=new, 'U'=update, 'I'=integrated | Define status da linha, caso for importação por tabela|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTRESOURCE</summary>
  
 ```json
 {
@@ -93,7 +93,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | status_imp | Varchar | max_length=1 | 'N'=new, 'U'=update, 'I'=integrated | Define status da linha, caso for importação por tabela. |
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTRESOURCE</summary>
  
 ```json
 {
@@ -135,7 +135,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | status_imp 	| Varchar	| max_length=1 	 | 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTOPERATOR</summary>
  
 ```json
 {
@@ -194,7 +194,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | status_imp	|Varchar	|max_length=1    |'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTSTOPREASON</summary>
 
   ```json
   {
@@ -260,7 +260,6 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 }
 ```
 </details>
-
 <summary>Nome da Tabela = IMPORTWASTEREASON</summary>
 <h4>Tabela responsável por cadastrar os motivos de refugo que acontecem durante o processo produtivo.</h4>
 
@@ -272,7 +271,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 |status_imp	|Varchar       |max_length=1	|'N'=new,<br>'U'=update,<br>'I'=integrated  |Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTWASTEREASON</summary>
 
   ```json
   {
@@ -318,7 +317,7 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 |**code**|Varchar|max_length=30||Código da ferramenta|
 |**description**|Varchar|max_length=128||Descrição da ferramenta|
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTTOOL</summary>
 
   ```json
 {
@@ -367,7 +366,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |status_imp		  |Varchar	|max_length=1			|'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTTOOLSETTINGS</summary>
  
   ```json
 {
@@ -448,7 +447,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |status_imp|Varchar|max_length=1|'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTPRODUCT</summary>
  
   ```json
 {
@@ -531,7 +530,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |status_imp|Varchar|max_length=1|'N'=new,<br> 'U'=update,<br> 'I'=integrated |Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTPRODUCTIONORDER</summary>
  
   ```json
 {
@@ -691,7 +690,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |status_imp| Varchar| max_length=1| 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTPRODUCTIONSEQUENCE</summary>
  
   ```json
 {
@@ -851,7 +850,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |status_imp| Varchar| max_length=1| 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
 
 <details>
-  <summary>Exemplo JSON</summary>
+  <summary>Exemplo JSON IMPORTGROUPEDPRODUCTIONORDER</summary>
  
   ```json
 {
@@ -907,7 +906,7 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 }
 ```
 </details>
-
+</details>
 
 ## 2 - Exportação
 
@@ -946,6 +945,186 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 | quantity3 | DecimalField | max_digits=20, decimal_places=10 | default=0 ||
 | conversion_rate | DecimalField | max_digits=20, decimal_places=10 | default=1 ||
 
+
+<details>
+  <summary>Exemplo JSON EXPORTPRODUCTION</summary>
+ 
+  ```json
+{
+  "table_name": "EXPORTPRODUCTION",
+  "description": "Tabela responsável por gravar os eventos de produção.",
+  "columns": [
+    {
+      "name": "id",
+      "type": "IntegerField",
+      "primary_key": true,
+      "description": "id criado sequencial"
+    },
+    {
+      "name": "generation_date",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "Data/hora do envio do evento."
+    },
+    {
+      "name": "company",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "origin",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "production_order",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "stage",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "production_sequence",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "product",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "resource",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "resource_group",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "tool",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "operator",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "shift",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "control",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "início do evento"
+    },
+    {
+      "name": "end",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "fim do evento"
+    },
+    {
+      "name": "duration",
+      "type": "IntegerField",
+      "description": "duração do evento fim - início"
+    },
+    {
+      "name": "batch_code",
+      "type": "Varchar",
+      "max_length": 32,
+      "default": "",
+      "blank": true,
+      "null": true,
+      "description": "Código do lote, em caso onde o cliente tenha essa informação o campo é alimentado"
+    },
+    {
+      "name": "quantity",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 0,
+      "description": ""
+    },
+    {
+      "name": "quantity2",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 0,
+      "description": ""
+    },
+    {
+      "name": "quantity3",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 0,
+      "description": ""
+    },
+    {
+      "name": "conversion_rate",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 1,
+      "description": ""
+ }
+  ]
+}
+```
+</details>
+
 <summary>Nome da Tabela = EXPORTWASTE </summary><br>
 <h4>Tabela responsável por gravar os eventos de refugo</h4>
 
@@ -975,6 +1154,196 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 | cause_step | Varchar | max_length=30 | blank=True, null=True ||
 | cause_resource | Varchar | max_length=30 | blank=True, null=True ||
 
+<details>
+  <summary>Exemplo JSON EXPORTWASTE</summary>
+ 
+  ```json
+
+{
+  "table_name": "EXPORTWASTE",
+  "description": "Tabela responsável por gravar os eventos de refugo.",
+  "columns": [
+    {
+      "name": "id",
+      "type": "IntegerField",
+      "primary_key": true,
+      "description": "id criado sequencial"
+    },
+    {
+      "name": "generation_date",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "Data/hora do envio do evento."
+    },
+    {
+      "name": "company",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "origin",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "production_order",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "stage",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "production_sequence",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "product",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "resource",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "resource_group",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "tool",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "operator",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "shift",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "time",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "Horário do apontamento de refugo."
+    },
+    {
+      "name": "reason",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "batch_code",
+      "type": "Varchar",
+      "max_length": 32,
+      "default": "",
+      "blank": true,
+      "null": true,
+      "description": "Código do lote. Caso o cliente tenha essa informação, o campo é alimentado."
+    },
+    {
+      "name": "quantity",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "description": ""
+    },
+    {
+      "name": "quantity2",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 0,
+      "description": ""
+    },
+    {
+      "name": "quantity3",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 0,
+      "description": ""
+    },
+    {
+      "name": "conversion_rate",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 1,
+      "description": ""
+    },
+    {
+      "name": "classification",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "cause_step",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "cause_resource",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+ }
+  ]
+}
+```
+</details>
 
 <summary>Nome da Tabela = EXPORTSTOP</summary><br>
 <h4>Tabela responsável por gravar os eventos de parada</h4>
@@ -1000,4 +1369,147 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 | reason | Varchar | max_length=30 | blank=True, null=True ||
 | setup | BooleanField | BooleanField | default=False ||
 
+<details>
+  <summary>Exemplo JSON EXPORTSTOP</summary>
+ 
+  ```json
+{
+  "table_name": "EXPORTSTOP",
+  "description": "Tabela responsável por gravar os eventos de parada.",
+  "columns": [
+    {
+      "name": "id",
+      "type": "IntegerField",
+      "primary_key": true,
+      "description": "id criado sequencial"
+    },
+    {
+      "name": "generation_date",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "Data/hora do envio do evento."
+    },
+    {
+      "name": "company",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "origin",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "production_order",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "stage",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "production_sequence",
+      "type": "IntegerField",
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "product",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "resource",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "resource_group",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "tool",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "operator",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "shift",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "início do evento"
+    },
+    {
+      "name": "end",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "fim do evento"
+    },
+    {
+      "name": "duration",
+      "type": "IntegerField",
+      "description": "duração do evento fim - início"
+    },
+    {
+      "name": "reason",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": ""
+    },
+    {
+      "name": "setup",
+      "type": "BooleanField",
+      "default": false,
+      "description": ""
+ }
+  ]
+}
+```
+</details>
 </details>
