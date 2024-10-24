@@ -83,8 +83,6 @@ A tabela `IMPORTRESOURCE` é responsável pelo cadastro dos centros de recurso. 
     }
   ]
 }
-
-
 <summary>Nome da Tabela = IMPORTRESOURCEGROUP </summary>
 <h4>Tabela responsável por criar grupos de máquinas, para facilitar a consulta de duas ou mais máquinas em relatórios, índices, entre outros.</h4>
 
