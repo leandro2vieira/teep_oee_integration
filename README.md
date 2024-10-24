@@ -32,8 +32,56 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | description | Varchar | max_length=128 |  | Descrição da máquina |
 | resource_group_code | Varchar | max_length=32 |  | Codigo do grupo de máquinas, associando com a ImportResourceGroup |	
 | active |	BooleanField |		|default=False|Define se a máquina está ativa/inativa|
-| status_imp | Varchar | max_length=1 | 'N'=new, 'U'=update, 'I'=integrated | Define status da linha, caso for importação por tabela. |
+| status_imp | Varchar | max_length=1 | 'N'=new, 'U'=update, 'I'=integrated | Define status da linha, caso for importação por tabela|
 
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+```json
+{
+  "table_name": "IMPORTRESOURCE",
+  "description": "Tabela responsável pelo cadastro dos centros de recurso",
+  "columns": [
+    {
+      "name": "company",
+      "type": "Integer",
+      "default": 1,
+      "description": "Código da Empresa"
+    },
+    {
+      "name": "code",
+      "type": "Varchar",
+      "max_length": 30,
+      "description": "Código da máquina"
+    },
+    {
+      "name": "description",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "Descrição da máquina"
+    },
+    {
+      "name": "resource_group_code",
+      "type": "Varchar",
+      "max_length": 32,
+      "description": "Código do grupo de máquinas, associando com a ImportResourceGroup"
+    },
+    {
+      "name": "active",
+      "type": "BooleanField",
+      "default": false,
+      "description": "Define se a máquina está ativa/inativa"
+    },
+    {
+      "name": "status_imp",
+      "type": "Varchar",
+      "max_length": 1,
+      "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)"
+    }
+  ]
+}
+```
+</details>
 
 <summary>Nome da Tabela = IMPORTRESOURCEGROUP </summary>
 <h4>Tabela responsável por criar grupos de máquinas, para facilitar a consulta de duas ou mais máquinas em relatórios, índices, entre outros.</h4>
@@ -43,6 +91,37 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | **code** | Varchar | max_length=32 |  | Codigo do grupo de máquinas |
 | description | Varchar | max_length=128 |  | Descrição completa do grupo |
 | status_imp | Varchar | max_length=1 | 'N'=new, 'U'=update, 'I'=integrated | Define status da linha, caso for importação por tabela. |
+
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+```json
+{
+    "table_name": "IMPORTRESOURCEGROUP",
+    "description": "Tabela responsável por criar grupos de máquinas, para facilitar a consulta de duas ou mais máquinas em relatórios, índices, entre outros.",
+    "columns": [
+        {
+            "name": "code",
+            "type": "Varchar",
+            "max_length": 32,
+            "description": "Código do grupo de máquinas"
+        },
+        {
+            "name": "description",
+            "type": "Varchar",
+            "max_length": 128,
+            "description": "Descrição completa do grupo"
+        },
+        {
+            "name": "status_imp",
+            "type": "Varchar",
+            "max_length": 1,
+            "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)"
+          }
+  ]
+}
+```
+</details>
 
 <summary>Nome da Tabela = IMPORTOPERATOR</summary>
 <h4>Tabela responsável por cadastrar os operadores que irão utilizar os coletores.</h4>
@@ -55,6 +134,48 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | active 	| BooleanField 	|  		 | default=True 		| Define ativo/inativo |
 | status_imp 	| Varchar	| max_length=1 	 | 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
 
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+```json
+{
+    "table_name": "IMPORTOPERATOR",
+    "description": "Tabela responsável por cadastrar os operadores que irão utilizar os coletores.",
+    "columns": [
+        {
+            "name": "company",
+            "type": "Integer",
+            "default": 1,
+            "description": "Código da empresa"
+        },
+        {
+            "name": "code",
+            "type": "Varchar",
+            "max_length": 30,
+            "description": "Código do operador"
+        },
+        {
+            "name": "name",
+            "type": "Varchar",
+            "max_length": 128,
+            "description": "Nome do operador"
+        },
+        {
+            "name": "active",
+            "type": "BooleanField",
+            "default": true,
+            "description": "Define ativo/inativo"
+        },
+        {
+            "name": "status_imp",
+            "type": "Varchar",
+            "max_length": 1,
+            "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)"
+       }
+  ]
+}
+```
+</details>
 
 <summary>Nome da Tabela = IMPORTSTOPREASON </summary>
 <h4>Tabela responsável por cadastrar os motivos de parada de máquina, como por exemplo manutenção mecânica, elétrica, entre outros.</h4>
@@ -72,6 +193,74 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | scheduled	|BooleanField	|		 |default=False                       |Define se o motivo é programado|
 | status_imp	|Varchar	|max_length=1    |'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
 
+<details>
+  <summary>Exemplo JSON</summary>
+
+  ```json
+  {
+    "table_name": "IMPORTSTOPREASON",
+    "description": "Tabela responsável por cadastrar os motivos de parada de máquina, como por exemplo manutenção mecânica, elétrica, entre outros.",
+    "columns": [
+      {
+        "name": "company",
+        "type": "Integer",
+        "description": "Código da empresa"
+      },
+      {
+        "name": "code",
+        "type": "Varchar",
+        "max_length": 30,
+        "description": "Código da parada"
+      },
+      {
+        "name": "description",
+        "type": "Varchar",
+        "max_length": 128,
+        "description": "Descrição da parada"
+      },
+      {
+        "name": "abbreviation",
+        "type": "Varchar",
+        "max_length": 16,
+        "description": "Abreviação da parada"
+      },
+      {
+        "name": "password",
+        "type": "Varchar",
+        "max_length": 32,
+        "description": "Se não tiver senha, manter vazio. Se usar algum valor, ele será solicitado para confirmar a parada. Muito usado para mecânicos/eletricistas, onde apenas estes profissionais podem inserir determinadas paradas."
+      },
+      {
+        "name": "color",
+        "type": "RGBColorField",
+        "description": "Exemplo: ‘#ffffff’ = branco"
+      },
+      {
+        "name": "active",
+        "type": "BooleanField",
+        "description": "Define ativo/inativo"
+      },
+      {
+        "name": "setup",
+        "type": "BooleanField",
+        "description": "Define se o motivo é setup"
+      },
+      {
+        "name": "scheduled",
+        "type": "BooleanField",
+        "description": "Define se o motivo é programado"
+      },
+      {
+        "name": "status_imp",
+        "type": "Varchar",
+        "max_length": 1,
+        "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)"
+  }
+  ]
+}
+```
+</details>
+
 <summary>Nome da Tabela = IMPORTWASTEREASON</summary>
 <h4>Tabela responsável por cadastrar os motivos de refugo que acontecem durante o processo produtivo.</h4>
 
@@ -82,6 +271,43 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 |**description**	|Varchar       |max_length=128	|				     |Descrição do refugo|
 |status_imp	|Varchar       |max_length=1	|'N'=new,<br>'U'=update,<br>'I'=integrated  |Define status da linha, caso for importação por tabela.|
 
+<details>
+  <summary>Exemplo JSON</summary>
+
+  ```json
+  {
+    "table_name": "IMPORTWASTEREASON",
+    "description": "Tabela responsável por cadastrar os motivos de refugo que acontecem durante o processo produtivo.",
+    "columns": [
+      {
+        "name": "company",
+        "type": "Integer",
+        "default": 1,
+        "description": "Código da empresa"
+      },
+      {
+        "name": "code",
+        "type": "Varchar",
+        "max_length": 30,
+        "description": "Código do refugo"
+      },
+      {
+        "name": "description",
+        "type": "Varchar",
+        "max_length": 128,
+        "description": "Descrição do refugo"
+      },
+      {
+        "name": "status_imp",
+        "type": "Varchar",
+        "max_length": 1,
+        "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)"
+      }
+  ]
+}
+```
+</details>
+
 
 <summary>Nome da Tabela = IMPORTTOOL</summary>
 <h4>Ferramentas utilizadas para produzir.</h4>
@@ -91,6 +317,35 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 |**company**|Integer|||Código da empresa|
 |**code**|Varchar|max_length=30||Código da ferramenta|
 |**description**|Varchar|max_length=128||Descrição da ferramenta|
+<details>
+  <summary>Exemplo JSON</summary>
+
+  ```json
+{
+  "table_name": "IMPORTTOOL",
+  "description": "Ferramentas utilizadas para produzir.",
+  "columns": [
+    {
+      "name": "company",
+      "type": "Integer",
+      "description": "Código da empresa"
+    },
+    {
+      "name": "code",
+      "type": "Varchar",
+      "max_length": 30,
+      "description": "Código da ferramenta"
+    },
+    {
+      "name": "description",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "Descrição da ferramenta"
+   }
+  ]
+}
+```
+</details>
 
 
 <summary>Nome da Tabela = IMPORTTOOLSETTINGS</summary>
@@ -110,6 +365,73 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |cycle_limit		  |Integer	||Valor em milisegundos|Este limite da uma “tolerância” ao tempo normal de ciclo, como no exemplo acima usei o valor 10.000. Se eu quiser dar 30 segundos de tolerância, utilizo o valor 40.000.|
 |stop_limit		  |Integer	||Valor em milisegundos|Este campo substitui o tempo_ciclo quando usado um modo exclusivo para usinagem, geralmente Tornos CNC.|
 |status_imp		  |Varchar	|max_length=1			|'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
+
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+  ```json
+{
+  "table_name": "IMPORTTOOLSETTINGS",
+  "description": "Essa tabela é associada a IMPORTTOOL e pode conter 1 ou N configurações da ferramenta, como em quais máquinas ela pode ser usada e em qual produto, o tempo de ciclo dela, limite de ciclo para entrar em parada, assim como o coeficiente de multiplicação.",
+  "columns": [
+    {
+      "name": "tool_code",
+      "type": "Varchar",
+      "max_digits": 30,
+      "description": "Código da ferramenta usado na tabela IMPORTTOOL"
+    },
+    {
+      "name": "resource_code",
+      "type": "Varchar",
+      "max_digits": 30,
+      "description": "Código do recurso usado na tabela IMPORTRESOURCE."
+    },
+    {
+      "name": "product_code",
+      "type": "Varchar",
+      "max_digits": 30,
+      "description": "Código do produto usado na tabela IMPORTPRODUCT."
+    },
+    {
+      "name": "multiplication_coefficient",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "description": "Número de peças incrementadas a cada ciclo de máquina. Por exemplo, número de cavidades quando for injetora."
+    },
+    {
+      "name": "depreciation",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "description": "O valor padrão é 0. Quando se tem um molde que uma cavidade está danificada, deve-se enviar a quantidade danificada nesta coluna."
+    },
+    {
+      "name": "cycle_time",
+      "type": "Integer",
+      "description": "Valor em milissegundos. Define o tempo padrão da ferramenta, ou seja, ciclo padrão ex: 10.000."
+    },
+    {
+      "name": "cycle_limit",
+      "type": "Integer",
+      "description": "Valor em milissegundos. Este limite dá uma tolerância ao tempo normal de ciclo, como no exemplo acima usei o valor 10.000. Se eu quiser dar 30 segundos de tolerância, utilizo o valor 40.000."
+    },
+    {
+      "name": "stop_limit",
+      "type": "Integer",
+      "description": "Valor em milissegundos. Este campo substitui o tempo_ciclo quando usado um modo exclusivo para usinagem, geralmente Tornos CNC."
+    },
+    {
+      "name": "status_imp",
+      "type": "Varchar",
+      "max_length": 1,
+      "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)."
+  }
+  ]
+}
+```
+</details>
+
  
 <summary>Nome da Tabela = IMPORTPRODUCT</summary>
 <h4>São cadastrados os produtos, para posterior associar às ordens de produção.</h4>
@@ -124,6 +446,67 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |box_conversion|Varchar|max_length=128||Conversão de caixa do produto|
 |external_id|Varchar|max_length=128||ID externo do produto|
 |status_imp|Varchar|max_length=1|'N'=new,<br>'U'=update,<br>'I'=integrated|Define status da linha, caso for importação por tabela.|
+
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+  ```json
+{
+  "table_name": "IMPORTPRODUCT",
+  "description": "São cadastrados os produtos, para posterior associar às ordens de produção.",
+  "columns": [
+    {
+      "name": "company",
+      "type": "Integer",
+      "default": 1,
+      "description": "Código da empresa"
+    },
+    {
+      "name": "code",
+      "type": "Varchar",
+      "max_length": 30,
+      "description": "Código do produto"
+    },
+    {
+      "name": "version",
+      "type": "Varchar",
+      "max_length": 30,
+      "description": "Versão do produto"
+    },
+    {
+      "name": "description",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "Descrição do produto"
+    },
+    {
+      "name": "expected_time",
+      "type": "Integer",
+      "default": 0,
+      "description": "Tempo esperado do produto"
+    },
+    {
+      "name": "box_conversion",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "Conversão de caixa do produto"
+    },
+    {
+      "name": "external_id",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "ID externo do produto"
+    },
+    {
+      "name": "status_imp",
+      "type": "Varchar",
+      "max_length": 1,
+      "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)."
+  }
+  ]
+}
+```
+</details>
 
 <summary>Nome da Tabela = IMPORTPRODUCTIONORDER</summary>
 <h4>Tabela responsável pelas ordens de produção.</h4>
@@ -146,6 +529,140 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |external_id|Varchar|max_length=128||ID externo da ordem de produção|
 |priority|DecimalField|max_digits=20,<br>decimal_places=10|default=1|distribuição das ordens no modulo planejamento.|
 |status_imp|Varchar|max_length=1|'N'=new,<br> 'U'=update,<br> 'I'=integrated |Define status da linha, caso for importação por tabela.|
+
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+  ```json
+{
+  "table_name": "IMPORTPRODUCTIONORDER",
+  "description": "Tabela responsável pelas ordens de produção.",
+  "columns": [
+    {
+      "name": "company",
+      "type": "Integer",
+      "default": 1,
+      "description": "Código da empresa"
+    },
+    {
+      "name": "origin",
+      "type": "Varchar",
+      "max_length": 30,
+      "default": "0",
+      "description": "Código da origem"
+    },
+    {
+      "name": "code",
+      "type": "Varchar",
+      "max_length": 30,
+      "description": "Código da ordem"
+    },
+    {
+      "name": "description",
+      "type": "Varchar",
+      "max_length": 128,
+      "blank": true,
+      "null": true,
+      "description": "Descrição da ordem"
+    },
+    {
+      "name": "product_code",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": "Código do produto"
+    },
+    {
+      "name": "derivation",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": "Derivação do produto"
+    },
+    {
+      "name": "order",
+      "type": "Integer",
+      "default": 1,
+      "blank": true,
+      "null": true,
+      "description": "Número do pedido"
+    },
+    {
+      "name": "measurement_unit",
+      "type": "Varchar",
+      "max_length": 128,
+      "default": "PC",
+      "blank": true,
+      "null": true,
+      "description": "Unidade de medida, ex: pc, metros"
+    },
+    {
+      "name": "customer_name",
+      "type": "Varchar",
+      "max_length": 128,
+      "default": "",
+      "blank": true,
+      "null": true,
+      "description": "Nome do cliente"
+    },
+    {
+      "name": "quantity",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 1,
+      "description": "Quantidade prevista da ordem"
+    },
+    {
+      "name": "grouped_production_order",
+      "type": "Varchar",
+      "max_length": 30,
+      "null": true,
+      "blank": true,
+      "description": "A coluna grouped_production_order é usada para realizar agrupamento de ordens de produção."
+    },
+    {
+      "name": "fraction",
+      "type": "DecimalField",
+      "max_digits": 10,
+      "decimal_places": 9,
+      "default": 1,
+      "description": "O percentual de produção que deve ser distribuído entre as OPs do agrupamento."
+    },
+    {
+      "name": "deadline",
+      "type": "DateTimeField",
+      "null": true,
+      "blank": true,
+      "description": "Data limite"
+    },
+    {
+      "name": "external_id",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "ID externo da ordem de produção"
+    },
+    {
+      "name": "priority",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "default": 1,
+      "description": "Distribuição das ordens no modulo planejamento."
+    },
+    {
+      "name": "status_imp",
+      "type": "Varchar",
+      "max_length": 1,
+      "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)."
+  }
+  ]
+}
+```
+</details>
+
 
 <summary>Nome da Tabela = IMPORTPRODUCTIONSEQUENCE</summary>
 <h4>Tabela responsável por concentrar as sequencias de produção, também conhecidas como roteiros, atividades, entre outros.</h4>
@@ -173,6 +690,152 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |situation|Varchar|max_length=128||Situacao da sequencia de produção, L = liberado, F = finalizado|
 |status_imp| Varchar| max_length=1| 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
 
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+  ```json
+{
+  "table_name": "IMPORTPRODUCTIONSEQUENCE",
+  "description": "Tabela responsável por concentrar as sequências de produção, também conhecidas como roteiros, atividades, entre outros.",
+  "columns": [
+    {
+      "name": "company",
+      "type": "Integer",
+      "default": 1,
+      "description": "Código da empresa"
+    },
+    {
+      "name": "origin",
+      "type": "Varchar",
+      "max_length": 30,
+      "default": "0",
+      "description": "Código da origem"
+    },
+    {
+      "name": "production_order_code",
+      "type": "Varchar",
+      "max_length": 30,
+      "description": "Código da Ordem Produção"
+    },
+    {
+      "name": "sequence",
+      "type": "Integer",
+      "description": "Sequência do Roteiro"
+    },
+    {
+      "name": "stage",
+      "type": "Integer",
+      "description": "Código do estágio"
+    },
+    {
+      "name": "resource_code",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": "Código do resource usado em IMPORTRESOURCE"
+    },
+    {
+      "name": "tool_code",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": "Código da ferramenta usado em IMPORTTOOL"
+    },
+    {
+      "name": "operation_code",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": "Código da operação"
+    },
+    {
+      "name": "operation_description",
+      "type": "Varchar",
+      "max_length": 30,
+      "blank": true,
+      "null": true,
+      "description": "Descrição da operação"
+    },
+    {
+      "name": "quantity",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "description": "Quantidade prevista"
+    },
+    {
+      "name": "quantity2",
+      "type": "DecimalField",
+      "max_digits": 20,
+      "decimal_places": 10,
+      "description": "Quantidade2 prevista"
+    },
+    {
+      "name": "conversion_rate",
+      "type": "Integer",
+      "description": "Taxa de conversão usado para caso a unidade de medida seja M²."
+    },
+    {
+      "name": "measurement_unit",
+      "type": "Varchar",
+      "max_length": 128,
+      "default": "PC",
+      "blank": true,
+      "null": true,
+      "description": "Unidade de medida da sequência, Exemplo: PC(peça), M² (metro quadrado)"
+    },
+    {
+      "name": "expected_start_date",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "Data prevista de início"
+    },
+    {
+      "name": "expected_end_date",
+      "type": "DateTimeField",
+      "blank": true,
+      "null": true,
+      "description": "Data prevista de término"
+    },
+    {
+      "name": "expected_setup",
+      "type": "BigInteger",
+      "default": 0,
+      "description": "Tempo de setup em milissegundos, caso não tiver mandar 1."
+    },
+    {
+      "name": "expected_time",
+      "type": "BigInteger",
+      "default": 0,
+      "description": "Tempo de produção em milissegundos, caso não tiver mandar 1."
+    },
+    {
+      "name": "external_id",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "Armazenamos o ID do ERP."
+    },
+    {
+      "name": "situation",
+      "type": "Varchar",
+      "max_length": 128,
+      "description": "Situação da sequência de produção, L = liberado, F = finalizado"
+    },
+    {
+      "name": "status_imp",
+      "type": "Varchar",
+      "max_length": 1,
+      "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)."
+  }
+  ]
+}
+```
+</details>
+
 <summary>Nome da Tabela = IMPORTGROUPEDPRODUCTIONORDER</summary>
 <h4>Tabela responsável por concentrar o agrupamento de ordens produção.</h4>
 
@@ -186,8 +849,64 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |**production_sequence**| Integer||| Sequência do agrupamento|
 |fraction| Integer||| Fração do agrupamento|
 |status_imp| Varchar| max_length=1| 'N'=new,<br>'U'=update,<br>'I'=integrated | Define status da linha, caso for importação por tabela.|
-</details>
 
+<details>
+  <summary>Exemplo JSON</summary>
+ 
+  ```json
+{
+  "table_name": "IMPORTGROUPEDPRODUCTIONORDER",
+  "description": "Tabela responsável por concentrar o agrupamento de ordens de produção.",
+  "columns": [
+    {
+      "name": "company",
+      "type": "Integer",
+      "default": 1,
+      "description": "Código da empresa"
+    },
+    {
+      "name": "origin",
+      "type": "Varchar",
+      "max_length": 30,
+      "default": "0",
+      "description": "Código da origem"
+    },
+    {
+      "name": "code",
+      "type": "Varchar",
+      "max_length": 30,
+      "description": "Código do Agrupamento das Ordens Produção"
+    },
+    {
+      "name": "stage",
+      "type": "Integer",
+      "description": "Código do estagio"
+    },
+    {
+      "name": "production_orders",
+      "type": "Integer",
+      "description": "IDs das ordens de produção"
+    },
+    {
+      "name": "production_sequence",
+      "type": "Integer",
+      "description": "Sequência do agrupamento"
+    },
+    {
+      "name": "fraction",
+      "type": "Integer",
+      "description": "Fração do agrupamento"
+    },
+    {
+      "name": "status_imp",
+      "type": "Varchar",
+      "max_length": 1,
+      "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)"
+ }
+  ]
+}
+```
+</details>
 
 
 ## 2 - Exportação
