@@ -33,56 +33,8 @@ Além de ser possível baixar os scripts prontos com os creates tanto de import 
 | resource_group_code | Varchar | max_length=32 |  | Codigo do grupo de máquinas, associando com a ImportResourceGroup |	
 | active |	BooleanField |		|default=False|Define se a máquina está ativa/inativa|
 | status_imp | Varchar | max_length=1 | 'N'=new, 'U'=update, 'I'=integrated | Define status da linha, caso for importação por tabela. |
-**Formato Json**
-<details>
- <summary>./importresource.json</summary>
-## Especificação da Tabela IMPORTRESOURCE
 
-A tabela `IMPORTRESOURCE` é responsável pelo cadastro dos centros de recurso. Abaixo está o JSON detalhando sua estrutura:
 
-```json
-{
-  "table_name": "IMPORTRESOURCE",
-  "description": "Tabela responsável pelo cadastro dos centros de recurso",
-  "columns": [
-    {
-      "name": "company",
-      "type": "Integer",
-      "default": 1,
-      "description": "Código da Empresa"
-    },
-    {
-      "name": "code",
-      "type": "Varchar",
-      "max_length": 30,
-      "description": "Código da máquina"
-    },
-    {
-      "name": "description",
-      "type": "Varchar",
-      "max_length": 128,
-      "description": "Descrição da máquina"
-    },
-    {
-      "name": "resource_group_code",
-      "type": "Varchar",
-      "max_length": 32,
-      "description": "Código do grupo de máquinas, associando com a ImportResourceGroup"
-    },
-    {
-      "name": "active",
-      "type": "BooleanField",
-      "default": false,
-      "description": "Define se a máquina está ativa/inativa"
-    },
-    {
-      "name": "status_imp",
-      "type": "Varchar",
-      "max_length": 1,
-      "description": "Define status da linha, caso for importação por tabela. Valores possíveis: 'N' (new), 'U' (update), 'I' (integrated)"
-    }
-  ]
-}
 <summary>Nome da Tabela = IMPORTRESOURCEGROUP </summary>
 <h4>Tabela responsável por criar grupos de máquinas, para facilitar a consulta de duas ou mais máquinas em relatórios, índices, entre outros.</h4>
 
