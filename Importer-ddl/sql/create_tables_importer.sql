@@ -246,3 +246,59 @@ create table importproductionsequence_id_table
         primary key
 )
 go
+
+create table importcomponents
+(
+    id                   int not null
+        constraint importcomponents_pkey
+            primary key,
+    barcode              varchar(128),
+    code               varchar(128),
+    description               varchar(128),
+    total_quantity            decimal(20, 10),
+    total_weight              decimal(20, 10),
+    current_quantity          decimal(20, 10),
+    current_weight            decimal(20, 10),,
+    type      varchar(30),
+    conversion_rate    int,
+    status             varchar(1),
+        check ([status] = 'L' OR [status] = 'F' OR [status] = 'C'),
+    extras           varchar(500)
+    
+)
+go
+
+create table importcomponents_id_table
+(
+    id int identity
+        primary key
+)
+go
+
+create table importcomponentsproductionorder
+(
+    id                   int not null
+        constraint importcomponentsproductionorder_pkey
+            primary key,
+    code              varchar(128),
+    code_production_order               varchar(30),
+    origin_production_order               varchar(30),
+    stage_production_sequence            int,
+    production_sequence              int,
+    reserved_quantity          decimal(20, 10),
+    reserved_weight          decimal(20, 10),
+    current_quantity          decimal(20, 10),
+    current_weight          decimal(20, 10),
+    status             varchar(1),
+        check ([status] = 'L' OR [status] = 'F' OR [status] = 'C'),
+    extras           varchar(500)
+    
+)
+go
+
+create table importcomponentsproductionorder_id_table
+(
+    id int identity
+        primary key
+)
+go

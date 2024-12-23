@@ -133,3 +133,33 @@ CREATE TABLE IMPORTPRODUCTIONSEQUENCE (
   situation       VARCHAR(1) NOT NULL DEFAULT 'L',
   status_imp           VARCHAR(1) NOT NULL
 );
+
+create table importcomponents (
+  id                   SERIAL          NOT NULL,
+  barcode              VARCHAR(128) NOT NULL,
+  code               VARCHAR(128) NOT NULL,
+  description               VARCHAR(128),
+  total_quantity            NUMERIC(20, 10) NOT NULL,
+  total_weight              NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  current_quantity          NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  current_weight            NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  type      VARCHAR(30),
+  conversion_rate    INTEGER,
+  status             VARCHAR(1) NOT NULL DEFAULT 'L',
+  extras           VARCHAR(500)
+)
+
+create table importcomponentsproductionorder (
+  id                   SERIAL          NOT NULL,
+  code              VARCHAR(128) NOT NULL,
+  code_production_order               VARCHAR(30) NOT NULL,
+  origin_production_order               VARCHAR(30) NOT NULL,
+  stage_production_sequence            INTEGER NOT NULL,
+  production_sequence              INTEGER NOT NULL,
+  reserved_quantity          NUMERIC(20, 10) NOT NULL,
+  reserved_weight          NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  current_quantity          NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  current_weight          NUMERIC(20, 10) NOT NULL DEFAULT 0,
+  status             VARCHAR(1) NOT NULL DEFAULT 'L',
+  extras           VARCHAR(500)
+)

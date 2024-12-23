@@ -906,6 +906,39 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 }
 ```
 </details>
+<summary>Nome da Tabela = IMPORTCOMPONENTS</summary>
+<h4>Tabela responsável por concentrar os componentes.</h4>
+
+| Coluna| Tipo de dado| Tamanho| Obs| Descrição|
+| -------------------- | ------------- | ----------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------- |
+|**barcode**|Varchar|max_length=128||Código de barras que identifica o item|
+|**code**|Varchar|max_length=128||Código do componente que diz que aquele componente é, por exemplo, o “PAPEL LAMINADO 40g”|
+|description|Varchar|max_length=128||descricao do item, onde esse valor é relacionado ao código|
+|**total_quantity**|DecimalField|max_digits=20,<br>decimal_places=10||Quantidade total que o item tem em sua originalidade. Por exemplo, em caso de uma bobina, entenda como o valor total da bobina, sem ter valor consumido|
+|**total_weight**|DecimalField|max_digits=20,<br>decimal_places=10||Peso total que o item tem em sua originalidade. Por exemplo, em caso de uma bobina, entenda como o valor total da bobina, sem ter valor consumido|
+|**current_quantity**|DecimalField|max_digits=20,<br>decimal_places=10||Quantidade atual que a bobina tem, onde esse valor é diferente da quantidade_total quando essa bobina já tiver sido consumida no processo|
+|**current_weight**|DecimalField|max_digits=20,<br>decimal_places=10||Peso atual que a bobina tem, onde esse valor é diferente da peso_total quando essa bobina já tiver sido consumida no processo|
+|conversion_rate|Integer||default=1|taxa de conversão|
+|**type**|Varchar|max_length=30||Alguma identificação do item, como: Bobina;Tinta;Massa;Pacote|
+|**status**|Varchar|max_length=1|'L'=liberado,<br>'F'=finalizado,<br>'C'=em consumo|Situação do componente, onde identifica se o componente está disponível para produção ou não|
+|extras|Varchar|max_length=500||Dados adicionais de identificação, ações, etc|
+
+<summary>Nome da Tabela = IMPORTCOMPONENTSPRODUCTIONORDER</summary>
+<h4>Tabela responsável por concentrar os componentes vinculado a ordem de produção.</h4>
+
+| Coluna| Tipo de dado| Tamanho| Obs| Descrição|
+| -------------------- | ------------- | ----------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------- |
+|**code**|Varchar|max_length=128||Valor deve corresponder para algum valor presente na tabela componente: codigo do componente que diz que aquele componente é, por exemplo, o “PAPEL LAMINADO 40g”|
+|**code_production_order**|Varchar|max_length=30||Código da ordem de producao que vai receber esse componente|
+|**origin_production_order**|Varchar|max_length=30||Origem da ordem de producao que vai receber esse componente|
+|**stage_production_sequence**|Integer|||Estágio da sequencia de producao que vai receber esse componente|
+|**production_sequence**|Integer|||Sequencia da ordem de producao que vai receber esse componente|
+|**reserved_quantity**|DecimalField|max_digits=20,<br>decimal_places=10||Quantidade do componente reservada para produção na ordem de produção|
+|**reserved_weight**|DecimalField|max_digits=20,<br>decimal_places=10||Peso do componente reservada para produção ordem de produção|
+|**current_quantity**|DecimalField|max_digits=20,<br>decimal_places=10||Quantidade atual da reserva de componente, após descontar os consumos|
+|**current_weight**|DecimalField|max_digits=20,<br>decimal_places=10||Peso atual da reserva de componente, após descontar os consumos|
+|**status**|Varchar|max_length=1|'L'=liberado,<br>'F'=finalizado,<br>'C'=em consumo|Situação do componente, onde identifica se o componente está disponível para produção ou não|
+|extras|Varchar|max_length=500|| Dados adicionais de identificação, ações, etc|
 </details>
 
 ## 2 - Exportação
