@@ -941,6 +941,133 @@ em parada, assim como o coeficiente de multiplicação, exemplo se tenho um coef
 |extras|Varchar|max_length=500|| Dados adicionais de identificação, ações, etc|
 </details>
 
+## 1.1 BOM - Bill of Materials
+
+<details>
+ <summary>Ver Tabelas</summary>
+ 
+ **Sistema: teepOEE** <br>
+ **Atualizado em: 04/03/2026**<br>
+
+
+ Essas tabelas permitem controlar de forma detalhada os materiais, alternativas e quantidades necessárias para fabricar um produto.
+
+<summary>Nome da Tabela = BOM</summary>
+<h4>Tabela responsável por definir a lista de materiais (Bill of Materials) necessária para fabricar um produto.</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| **product** | ForeignKey |  |  | Produto principal (referência à tabela Product) |
+| **version** | Varchar | max_length=30 | default='001' | Versão da BOM |
+| description | Varchar | max_length=255 | blank=True, null=True | Descrição da BOM |
+| is_active | BooleanField |  | default=True | Define se a BOM está ativa/inativa |
+
+---
+
+<summary>Nome da Tabela = BOMItem</summary>
+<h4>Tabela responsável por definir os componentes/materiais necessários em cada BOM.</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| **bom** | ForeignKey |  |  | Referência à BOM principal |
+| **component** | ForeignKey |  |  | Produto componente (referência à tabela Product) |
+| quantity | DecimalField | max_digits=20, decimal_places=10 |  | Quantidade do componente |
+| sequence | PositiveIntegerField |  | default=0 | Sequência de uso do componente |
+| is_optional | BooleanField |  | default=False | Indica se o componente é opcional |
+| notes | TextField |  | blank=True, null=True | Observações |
+
+---
+
+<summary>Nome da Tabela = BOMAlternative</summary>
+<h4>Tabela responsável por definir componentes alternativos para um item da BOM.</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| **bom_item** | ForeignKey |  |  | Referência ao item da BOM |
+| **alternative_component** | ForeignKey |  |  | Produto alternativo (referência à tabela Product) |
+| quantity | DecimalField | max_digits=20, decimal_places=10 |  | Quantidade do componente alternativo |
+
+---
+
+<summary>Nome da Tabela = Routing</summary>
+<h4>Tabela responsável por definir o roteiro de produção (sequência de operações) de um produto.</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| **product** | ForeignKey |  |  | Produto principal (referência à tabela Product) |
+| **version** | Varchar | max_length=30 | default='001' | Versão do roteiro |
+| is_active | BooleanField |  | default=True | Define se o roteiro está ativo/inativo |
+
+---
+
+<summary>Nome da Tabela = RoutingOperation</summary>
+<h4>Tabela responsável por definir cada operação/processo dentro do roteiro de produção.</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| **routing** | ForeignKey |  |  | Referência ao roteiro principal |
+| sequence | PositiveIntegerField |  |  | Sequência da operação |
+| stage | IntegerField |  | default=0 | Estágio/processo |
+| operation_code | Varchar | max_length=30 | blank=True, null=True | Código da operação |
+| description | Varchar | max_length=255 | blank=True, null=True | Descrição da operação |
+| setup_time | IntegerField |  | default=0 | Tempo de preparação (minutos) |
+| run_time_per_unit | DecimalField | max_digits=10, decimal_places=2 | default=0 | Tempo de execução por unidade (minutos) |
+
+---
+
+<summary>Nome da Tabela = RoutingMaterial</summary>
+<h4>Tabela responsável por definir os materiais utilizados em cada operação do roteiro.</h4>
+
+|Coluna|Tipo de dado|Tamanho|Obs|Descrição|
+|-------------|-------------|-------------|-------------|-------------|
+| **routing_operation** | ForeignKey |  |  | Referência à operação do roteiro |
+| material | ForeignKey |  |  | Material utilizado (referência à tabela Product) |
+| quantity_per_unit | DecimalField | max_digits=20, decimal_places=10 |  | Quantidade por unidade produzida |
+| uom | Varchar | max_length=30 | blank=True, null=True | Unidade de medida |
+| notes | TextField |  | blank=True, null=True | Observações |
+
+---
+
+## Exemplo Prático: Bicicleta
+
+### BOM
+| Produto | Versão | Descrição |
+|---------|--------|-----------|
+| Bicicleta A | 001 | BOM inicial |
+
+### BOMItem
+| Componente | Quantidade | Sequência | Opcional |
+|------------|------------|-----------|----------|
+| Quadro     | 1          | 1         | Não      |
+| Roda       | 2          | 2         | Não      |
+| Guidão     | 1          | 3         | Não      |
+
+### BOMAlternative
+| Item da BOM | Componente Alternativo | Quantidade |
+|-------------|-----------------------|------------|
+| Roda        | Roda Genérica         | 2          |
+
+### Routing
+| Produto | Versão | Ativo |
+|---------|--------|-------|
+| Bicicleta A | 001 | Sim   |
+
+### RoutingOperation
+| Sequência | Código | Descrição                | Setup (min) | Run/unidade (min) |
+|-----------|--------|--------------------------|-------------|-------------------|
+| 1         |        | Montagem do quadro       | 10          | 5                 |
+| 2         |        | Instalação das rodas     | 5           | 3                 |
+| 3         |        | Instalação do guidão     | 2           | 2                 |
+
+### RoutingMaterial
+| Operação                | Material | Quantidade por unidade | Unidade |
+|-------------------------|----------|-----------------------|---------|
+| Montagem do quadro      | solda    | 1                     | unidade |
+| Instalação das rodas    | Roda     | 2                     | unidade |
+
+---
+</details>
+
 ## 2 - Exportação
 
 <details>
